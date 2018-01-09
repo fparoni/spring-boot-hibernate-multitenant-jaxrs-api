@@ -1,0 +1,33 @@
+datasources:
+   tenants:
+     - 
+       name: tenant_1
+       default: true
+       url: jdbc:h2:mem:tenant1;DB_CLOSE_ON_EXIT=FALSE
+       username: sa
+       password: 
+       driver-class-name: org.h2.Driver
+     - 
+       name: tenant_2
+       default: false
+       url: jdbc:h2:mem:tenant2;DB_CLOSE_ON_EXIT=FALSE
+       username: sa
+       password:
+       driver-class-name: org.h2.Driver
+       
+spring:
+    jpa:
+        properties:
+            hibernate:
+                show_sql: true    
+    h2:
+        console:
+            enabled: true
+            path: /console
+        settings:
+            trace: false
+            web-allow-others: false	
+            
+    datasource:
+        schema: schema-tenant1.sql, schema-tenant2.sql
+        data: data-tenant1.sql, data-tenant2.sql
